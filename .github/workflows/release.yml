@@ -1,0 +1,34 @@
+name: Release
+
+# Continuous delivery: pushing a version tag (e.g. v0.1.0) tests the code,
+# builds the package and publishes a GitHub Release with the wheel and sdist.
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install and test before releasing
+        run: |
+          pip install -e ".[dev]"
+          python -m pytest --cov
+      - name: Check that the tag matches the package version
+        run: |
+          VERSION=$(python -c "import cargo_dispatch; print(cargo_dispatch.__version__)")
+          test "v$VERSION" = "${GITHUB_REF_NAME}" || { echo "Tag ${GITHUB_REF_NAME} != v$VERSION"; exit 1; }
+      - name: Build distribution
+        run: python -m build
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
