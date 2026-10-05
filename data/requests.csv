@@ -1,0 +1,16 @@
+id,origin_city,origin_lat,origin_lon,dest_city,dest_lat,dest_lon,weight_kg,cargo_type,priority
+R01,Almaty,43.2389,76.8897,Astana,51.1694,71.4491,12000,general,2
+R02,Astana,51.1694,71.4491,Karaganda,49.8047,73.1094,8000,perishable,3
+R03,Shymkent,42.3417,69.5901,Turkestan,43.2973,68.2518,15000,general,1
+R04,Atyrau,47.1164,51.8833,Aktau,43.6500,51.1667,20000,liquid,2
+R05,Pavlodar,52.2873,76.9674,Semey,50.4111,80.2275,10000,general,1
+R06,Karaganda,49.8047,73.1094,Almaty,43.2389,76.8897,22000,oversized,2
+R07,Ust-Kamenogorsk,49.9483,82.6275,Almaty,43.2389,76.8897,9000,perishable,2
+R08,Kostanay,53.2198,63.6354,Petropavl,54.8667,69.1500,17000,general,1
+R09,Aktobe,50.2839,57.1670,Oral,51.2333,51.3667,18000,liquid,1
+R10,Taraz,42.9000,71.3667,Shymkent,42.3417,69.5901,6000,general,3
+R11,Almaty,43.2389,76.8897,Taldykorgan,45.0156,78.3739,11000,perishable,1
+R12,Kyzylorda,44.8528,65.5092,Shymkent,42.3417,69.5901,14000,general,1
+R13,Astana,51.1694,71.4491,Kokshetau,53.2833,69.3833,19000,general,2
+R14,Semey,50.4111,80.2275,Pavlodar,52.2873,76.9674,8000,general,1
+R15,Taraz,42.9000,71.3667,Astana,51.1694,71.4491,23000,oversized,1

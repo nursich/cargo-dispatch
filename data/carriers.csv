@@ -1,0 +1,13 @@
+id,name,city,lat,lon,vehicle_type,capacity_kg,rate_per_km,rating,on_time_rate
+C01,Steppe Logistics,Astana,51.1694,71.4491,tent,20000,320,4.6,0.94
+C02,Almaty Trans,Almaty,43.2389,76.8897,refrigerator,15000,410,4.8,0.97
+C03,South Cargo,Kyzylorda,44.8528,65.5092,tent,20000,290,4.1,0.86
+C04,Karaganda Freight,Temirtau,50.0549,72.9646,flatbed,25000,350,4.3,0.9
+C05,Aktobe Express,Aktobe,50.2839,57.167,tanker,22000,380,4.5,0.92
+C06,Irtysh Haulage,Ekibastuz,51.7236,75.3222,tent,18000,300,3.9,0.83
+C07,Altai Logistic,Semey,50.4111,80.2275,refrigerator,12000,390,4.4,0.91
+C08,Tobol Trucks,Rudny,52.9653,63.1336,tent,20000,310,4.2,0.88
+C09,Caspian Tankers,Aktau,43.65,51.1667,tanker,25000,400,4.7,0.95
+C10,Zhambyl Cargo,Shymkent,42.3417,69.5901,flatbed,24000,330,4.0,0.85
+C11,Capital Cold Chain,Astana,51.1694,71.4491,refrigerator,14000,420,4.9,0.98
+C12,Semey Transit,Ust-Kamenogorsk,49.9483,82.6275,tent,16000,295,3.8,0.8
