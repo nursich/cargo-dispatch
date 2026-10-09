@@ -54,7 +54,7 @@ jobs:
         run: python -m pytest --cov --cov-report=term-missing --cov-report=xml
       - name: Upload coverage report
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-xml
           path: coverage.xml
@@ -78,7 +78,7 @@ jobs:
           --strategy optimal --out results/assignments.csv --plot results/allocation.png
       - name: Benchmark greedy vs optimal
         run: python scripts/benchmark.py --instances 50 --out results/benchmark.csv
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: allocation-results
           path: results/
@@ -99,7 +99,7 @@ jobs:
         run: |
           pip install dist/*.whl
           cargo-dispatch --version
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: dist
           path: dist/
