@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -42,21 +43,28 @@ def _read_csv(path: str | Path, required: tuple[str, ...]) -> pd.DataFrame:
     return df
 
 
+def _records(df: pd.DataFrame) -> list[dict[str, Any]]:
+    """Rows as plain dicts. Values are typed ``Any`` on purpose: pandas-stubs types
+    cells as a wide union that ``float()``/``int()`` do not accept, and the values are
+    validated by the model classes anyway."""
+    return [{str(k): v for k, v in rec.items()} for rec in df.to_dict(orient="records")]
+
+
 def load_carriers(path: str | Path) -> list[Carrier]:
     """Load carriers from a CSV file (see ``data/carriers.csv`` for the format)."""
     df = _read_csv(path, CARRIER_COLUMNS)
     return [
         Carrier(
-            id=str(row.id),
-            name=str(row.name),
-            location=Location(float(row.lat), float(row.lon), str(getattr(row, "city", ""))),
-            vehicle_type=VehicleType(str(row.vehicle_type).strip().lower()),
-            capacity_kg=float(row.capacity_kg),
-            rate_per_km=float(row.rate_per_km),
-            rating=float(row.rating),
-            on_time_rate=float(row.on_time_rate),
+            id=str(row["id"]),
+            name=str(row["name"]),
+            location=Location(float(row["lat"]), float(row["lon"]), str(row.get("city", ""))),
+            vehicle_type=VehicleType(str(row["vehicle_type"]).strip().lower()),
+            capacity_kg=float(row["capacity_kg"]),
+            rate_per_km=float(row["rate_per_km"]),
+            rating=float(row["rating"]),
+            on_time_rate=float(row["on_time_rate"]),
         )
-        for row in df.itertuples(index=False)
+        for row in _records(df)
     ]
 
 
@@ -65,18 +73,18 @@ def load_requests(path: str | Path) -> list[CargoRequest]:
     df = _read_csv(path, REQUEST_COLUMNS)
     return [
         CargoRequest(
-            id=str(row.id),
+            id=str(row["id"]),
             origin=Location(
-                float(row.origin_lat), float(row.origin_lon), str(getattr(row, "origin_city", ""))
+                float(row["origin_lat"]), float(row["origin_lon"]), str(row.get("origin_city", ""))
             ),
             destination=Location(
-                float(row.dest_lat), float(row.dest_lon), str(getattr(row, "dest_city", ""))
+                float(row["dest_lat"]), float(row["dest_lon"]), str(row.get("dest_city", ""))
             ),
-            weight_kg=float(row.weight_kg),
-            cargo_type=CargoType(str(row.cargo_type).strip().lower()),
-            priority=int(row.priority),
+            weight_kg=float(row["weight_kg"]),
+            cargo_type=CargoType(str(row["cargo_type"]).strip().lower()),
+            priority=int(row["priority"]),
         )
-        for row in df.itertuples(index=False)
+        for row in _records(df)
     ]
 
 
